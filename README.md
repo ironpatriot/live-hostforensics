@@ -1,4 +1,4 @@
-# Simple Volalitile Artficact Collector in Powershell
+# Simple Volatile Artficact Collector in Powershell
 
 ## High level objectives
 

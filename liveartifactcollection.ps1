@@ -42,11 +42,11 @@ $arch = $os.OSArchitecture
 Write-Host "Computername : "  $os.PSComputerName
 Write-Host "OS Version: " $osversion[0]
 Write-Host "OS Manufactor: " $maker
-Write-Host "OS Architecture: " $arch
+Write-Host "OS Architecture: " $arch`r`n
 
 $breaksection
 
-    $z = "Recorded Time Zone "
+    $z = "Recorded Time Zone `r`n"
     $z
 
 $breaksection 
@@ -59,7 +59,7 @@ Write-Host "Time Zone: " $TZ.Id
 
 $breaksection
 
-    $y = "Gathering Partition and Disk Information "
+    $y = "Gathering Partition and Disk Information `r`n"
     $y
 
 
@@ -76,7 +76,7 @@ foreach ($vol in $vols){
 
 $breaksection
 
-    Write-Host "Currently not collecting memory artifacts"
+    Write-Host "Currently not collecting memory artifacts`r`n"
 
 $breaksection 
 
@@ -85,7 +85,7 @@ $breaksection
 
 $breaksection
 
-    $h  = "Gathering list of User Accounts "
+    $h  = "Gathering list of User Accounts`r`n"
     $h
 
 $breaksection 
@@ -101,7 +101,7 @@ foreach ($user in $users){
 
 $breaksection
 
-    $p = "Gathering Network Adapters with MAC Addresses"
+    $p = "Gathering Network Adapters with MAC Addresses`r`n"
     $p
 
 $breaksection 
@@ -121,12 +121,18 @@ for ($a = 0; $a -lt $netdevices.Count; $a++) {
 
 $breaksection
 
+    $e = "Retrieving Network Share Information`r`n"
+    $e
+
 $breaksection 
 
 # Network Shares
 Get-SmbShare 
 
 $breaksection 
+
+    $o = "Collecting all Established Network Connections`r`n"
+    $o
 
 $breaksection 
 
@@ -135,7 +141,7 @@ Get-NetTCPConnection -State "Established"
 
 $breaksection
 
-    $f = "Checking For Startup Processes "
+    $f = "Checking For Startup Processes`r`n"
     $f
 
 $breaksection 
@@ -146,17 +152,20 @@ Get-WmiObject Win32_Service -Filter "StartMode ='Auto'"
 
 $breaksection
 
-# # Last File Writes per number of days 
-# Write-Host "Collecting Last Written File Time and Application"
+    $d = "Collecting Last Written File Time and Application`r`n"
+    $d  
 
-# Try{
-#     Get-ChildItem -Recurse C:\ | Where-Object {$_.lastwritetime -gt (Get-Date).AddDays(1)} 
-#     # Adding progess bar | Write-Progress -Activity "Gathering Last Written Files" -Status "Bruh"
-# } Catch {
-#     Write-Error -ErrorAction SilentlyContinue | Out-File -FilePath '/errlog.txt'
-# }
-# #Write-Progress -Activity "Complete! Moving On" -Status "Dope"
-# # Processes
+$breaksection
+
+Try{
+    Get-ChildItem -Recurse C:\ | Where-Object {$_.lastwritetime -gt (Get-Date).AddDays(1)} 
+    # Adding progess bar | Write-Progress -Activity "Gathering Last Written Files" -Status "Bruh"
+} Catch {
+    Write-Error -ErrorAction SilentlyContinue | Out-File -FilePath '/errlog.txt'
+}
+#Write-Progress -Activity "Complete! Moving On" -Status "Dope"
+
+$breaksection
 
     $q = "Processes running with a Graphical User Interface"
     $q
@@ -168,7 +177,7 @@ Get-Process | Where-Object {$_.mainWindowTitle} | Format-Table Id, getName, main
 
 $breaksection
 
-    $g =  "Gathering Processes similar to PS -ef in Linux  | Who ran the file"
+    $g =  "Gathering Processes similar to PS -ef in Linux  | Who ran the file`r`n"
     $g
 
 $breaksection
@@ -179,7 +188,7 @@ Get-Process -IncludeUserName
 
 $breaksection
 
-    $b = "Retreiving Metadata from Jump Lists"
+    $b = "Retreiving Metadata from Jump Lists`r`n"
     $b
 
 $breaksection
